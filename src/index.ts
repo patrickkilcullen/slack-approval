@@ -109,7 +109,7 @@ async function run(): Promise<void> {
           'type': 'section',
           'text': {
             'type': 'mrkdwn',
-            'text': `Approved by <@${body.user.id}> for Run ID: ${run_id}`,
+            'text': `Approved by <@${body.user.id}>`,
           },
         })
 
@@ -134,7 +134,7 @@ async function run(): Promise<void> {
           'type': 'section',
           'text': {
             'type': 'mrkdwn',
-            'text': `Rejected by <@${body.user.id}> for Run ID: ${run_id}`,
+            'text': `Rejected by <@${body.user.id}>`,
           },
         })
 
