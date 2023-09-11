@@ -107,7 +107,7 @@ function run() {
                                     "text": {
                                         "type": "plain_text",
                                         "emoji": true,
-                                        "text": "Approve test"
+                                        "text": "Approve"
                                     },
                                     "style": "primary",
                                     "value": "approve",
@@ -118,7 +118,7 @@ function run() {
                                     "text": {
                                         "type": "plain_text",
                                         "emoji": true,
-                                        "text": "Reject test"
+                                        "text": "Reject"
                                     },
                                     "style": "danger",
                                     "value": "reject",

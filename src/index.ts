@@ -77,7 +77,7 @@ async function run(): Promise<void> {
                         "text": {
                             "type": "plain_text",
                             "emoji": true,
-                            "text": "Approve test"
+                            "text": "Approve"
                         },
                         "style": "primary",
                         "value": "approve",
@@ -88,7 +88,7 @@ async function run(): Promise<void> {
                         "text": {
                                 "type": "plain_text",
                                 "emoji": true,
-                                "text": "Reject test"
+                                "text": "Reject"
                         },
                         "style": "danger",
                         "value": "reject",
