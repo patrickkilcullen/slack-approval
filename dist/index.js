@@ -111,7 +111,7 @@ function run() {
                                     },
                                     "style": "primary",
                                     "value": "approve",
-                                    "action_id": `slack-approval-approve- ${run_id}`
+                                    "action_id": `slack-approval-approve-${run_id}`
                                 },
                                 {
                                     "type": "button",
@@ -153,7 +153,7 @@ function run() {
                 }
                 process.exit(0);
             }));
-            app.action('slack-approval-reject-${run_id}', ({ ack, client, body, logger }) => __awaiter(this, void 0, void 0, function* () {
+            app.action(`slack-approval-reject-${run_id}`, ({ ack, client, body, logger }) => __awaiter(this, void 0, void 0, function* () {
                 var _d, _e, _f;
                 yield ack();
                 try {
