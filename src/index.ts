@@ -81,7 +81,7 @@ async function run(): Promise<void> {
                         },
                         "style": "primary",
                         "value": "approve",
-                        "action_i": `slack-approval-approve-${run_id}`
+                        "action_id": `slack-approval-approve- ${run_id}`
                     },
                     {
                         "type": "button",

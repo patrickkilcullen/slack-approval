@@ -107,29 +107,29 @@ function run() {
                                     "text": {
                                         "type": "plain_text",
                                         "emoji": true,
-                                        "text": "Approve"
+                                        "text": "Approve test"
                                     },
                                     "style": "primary",
                                     "value": "approve",
-                                    "action_id": "slack-approval-approve"
+                                    "action_id": `slack-approval-approve- ${run_id}`
                                 },
                                 {
                                     "type": "button",
                                     "text": {
                                         "type": "plain_text",
                                         "emoji": true,
-                                        "text": "Reject"
+                                        "text": "Reject test"
                                     },
                                     "style": "danger",
                                     "value": "reject",
-                                    "action_id": "slack-approval-reject"
+                                    "action_id": `slack-approval-reject-${run_id}`
                                 }
                             ]
                         }
                     ]
                 });
             }))();
-            app.action('slack-approval-approve', ({ ack, client, body, logger }) => __awaiter(this, void 0, void 0, function* () {
+            app.action(`slack-approval-approve-${run_id}`, ({ ack, client, body, logger }) => __awaiter(this, void 0, void 0, function* () {
                 var _a, _b, _c;
                 yield ack();
                 try {
@@ -139,7 +139,7 @@ function run() {
                         'type': 'section',
                         'text': {
                             'type': 'mrkdwn',
-                            'text': `Approved by <@${body.user.id}> `,
+                            'text': `Approved by <@${body.user.id}> for Run ID: ${run_id}`,
                         },
                     });
                     yield client.chat.update({
@@ -153,7 +153,7 @@ function run() {
                 }
                 process.exit(0);
             }));
-            app.action('slack-approval-reject', ({ ack, client, body, logger }) => __awaiter(this, void 0, void 0, function* () {
+            app.action('slack-approval-reject-${run_id}', ({ ack, client, body, logger }) => __awaiter(this, void 0, void 0, function* () {
                 var _d, _e, _f;
                 yield ack();
                 try {
@@ -163,7 +163,7 @@ function run() {
                         'type': 'section',
                         'text': {
                             'type': 'mrkdwn',
-                            'text': `Rejected by <@${body.user.id}>`,
+                            'text': `Rejected by <@${body.user.id}> for Run ID: ${run_id}`,
                         },
                     });
                     yield client.chat.update({
