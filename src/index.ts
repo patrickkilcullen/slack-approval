@@ -77,18 +77,18 @@ async function run(): Promise<void> {
                         "text": {
                             "type": "plain_text",
                             "emoji": true,
-                            "text": "Approve"
+                            "text": "Approve test"
                         },
                         "style": "primary",
                         "value": "approve",
-                        "action_id": `slack-approval-approve-${run_id}`
+                        "action_i": `slack-approval-approve-${run_id}`
                     },
                     {
                         "type": "button",
                         "text": {
                                 "type": "plain_text",
                                 "emoji": true,
-                                "text": "Reject"
+                                "text": "Reject test"
                         },
                         "style": "danger",
                         "value": "reject",
