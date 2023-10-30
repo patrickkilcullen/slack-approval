@@ -27,7 +27,9 @@ async function run(): Promise<void> {
     const workflow   = process.env.GITHUB_WORKFLOW || "";
     const runnerOS   = process.env.RUNNER_OS || "";
     const actor      = process.env.GITHUB_ACTOR || "";
-
+    const service_name = process.env.SERVICE_NAME || "";
+    const environment = process.env.ENVIRONMENT || "";
+    const project_id = process.env.PROJECT_ID || "";
     (async () => {
       await web.chat.postMessage({ 
         channel: channel_id, 
@@ -57,15 +59,15 @@ async function run(): Promise<void> {
                 },
                 {
                   "type": "mrkdwn",
-                  "text": `*GITHUB_RUN_ID:*\n${run_id}`
+                  "text": `*SERVICE_NAME:*\n${service_name}`
                 },
                 {
                   "type": "mrkdwn",
-                  "text": `*Workflow:*\n${workflow}`
+                  "text": `*PROJECT_ID:*\n${project_id}`
                 },
                 {
                   "type": "mrkdwn",
-                  "text": `*RunnerOS:*\n${runnerOS}`
+                  "text": `*ENVIRONMENT:*\n${environment}`
                 }
               ]
             },

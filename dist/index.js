@@ -58,6 +58,10 @@ function run() {
             const workflow = process.env.GITHUB_WORKFLOW || "";
             const runnerOS = process.env.RUNNER_OS || "";
             const actor = process.env.GITHUB_ACTOR || "";
+            const service_name = process.env.SERVICE_NAME || "";
+            const environment = process.env.ENVIRONMENT || "";
+            const project_id = process.env.PROJECT_ID || "";
+            
             (() => __awaiter(this, void 0, void 0, function* () {
                 yield web.chat.postMessage({
                     channel: channel_id,
@@ -86,16 +90,16 @@ function run() {
                                     "text": `*Actions URL:*\n${actionsUrl}`
                                 },
                                 {
-                                    "type": "mrkdwn",
-                                    "text": `*GITHUB_RUN_ID:*\n${run_id}`
+                                "type": "mrkdwn",
+                                "text": `*SERVICE_NAME:*\n${service_name}`
                                 },
                                 {
-                                    "type": "mrkdwn",
-                                    "text": `*Workflow:*\n${workflow}`
+                                "type": "mrkdwn",
+                                "text": `*PROJECT_ID:*\n${project_id}`
                                 },
                                 {
-                                    "type": "mrkdwn",
-                                    "text": `*RunnerOS:*\n${runnerOS}`
+                                "type": "mrkdwn",
+                                "text": `*ENVIRONMENT:*\n${environment}`
                                 }
                             ]
                         },
