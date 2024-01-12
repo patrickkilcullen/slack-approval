@@ -78,7 +78,7 @@ async function run(): Promise<void> {
               "text":
                 {
                   "type": "mrkdwn",
-                  "text": `*Trigger '${action}' on'${layer}' layer in '${environment}'* :exclamation:`
+                  "text": `:exclamation: *TRIGGER '${action}' ON '${layer}' LAYER IN '${environment}'* :exclamation:`
                 }
             },
             {
