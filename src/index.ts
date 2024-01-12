@@ -7,8 +7,9 @@ const signingSecret =  process.env.SLACK_SIGNING_SECRET || ""
 const slackAppToken = process.env.SLACK_APP_TOKEN || ""
 const channel_id    = process.env.SLACK_CHANNEL_ID || ""
 const plan    = process.env.PLAN || ""
-const layer    = process.env.LAYER || ""
-const action    = process.env.ACTION || ""
+const layer   = process.env.LAYER || ""
+const action  = process.env.ACTION || ""
+const workspace  = process.env.WORKSPACE || ""
 
 const app = new App({
   token: token,
@@ -78,7 +79,7 @@ async function run(): Promise<void> {
               "text":
                 {
                   "type": "mrkdwn",
-                  "text": `:exclamation: *TRIGGER '${action}' ON '${layer}' LAYER IN '${environment}'* :exclamation:`
+                  "text": `:exclamation: *TRIGGER '${action}' ON '${layer}' LAYER IN '${workspace}'* :exclamation:`
                 }
             },
             {

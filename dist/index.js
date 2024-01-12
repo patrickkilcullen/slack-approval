@@ -42,6 +42,7 @@ const channel_id = process.env.SLACK_CHANNEL_ID || "";
 const plan = process.env.PLAN || "";
 const layer = process.env.LAYER || "";
 const action = process.env.ACTION || "";
+const workspace = process.env.WORKSPACE || "";
 const app = new bolt_1.App({
     token: token,
     signingSecret: signingSecret,
@@ -108,7 +109,7 @@ function run() {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": `:exclamation: *TRIGGER '${action}' ON '${layer}' LAYER IN '${environment}'* :exclamation:`
+                                "text": `:exclamation: *TRIGGER '${action}' ON '${layer}' LAYER IN '${workspace}'* :exclamation:`
                             }
                         },
                         {
