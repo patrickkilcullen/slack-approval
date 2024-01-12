@@ -39,6 +39,7 @@ const token = process.env.SLACK_BOT_TOKEN || "";
 const signingSecret = process.env.SLACK_SIGNING_SECRET || "";
 const slackAppToken = process.env.SLACK_APP_TOKEN || "";
 const channel_id = process.env.SLACK_CHANNEL_ID || "";
+const plan = process.env.PLAN || "";
 const app = new bolt_1.App({
     token: token,
     signingSecret: signingSecret,
@@ -61,7 +62,6 @@ function run() {
             const service_name = process.env.SERVICE_NAME || "";
             const environment = process.env.ENVIRONMENT || "";
             const project_id = process.env.PROJECT_ID || "";
-            
             (() => __awaiter(this, void 0, void 0, function* () {
                 yield web.chat.postMessage({
                     channel: channel_id,
@@ -78,7 +78,7 @@ function run() {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": `Plan:`,
+                                "text": `*Plan:*\n \`\`\` \n${plan}\n\`\`\``,
                             }
                         },
                         {
@@ -97,16 +97,16 @@ function run() {
                                     "text": `*Actions URL:*\n${actionsUrl}`
                                 },
                                 {
-                                "type": "mrkdwn",
-                                "text": `*SERVICE_NAME:*\n${service_name}`
+                                    "type": "mrkdwn",
+                                    "text": `*SERVICE_NAME:*\n${service_name}`
                                 },
                                 {
-                                "type": "mrkdwn",
-                                "text": `*PROJECT_ID:*\n${project_id}`
+                                    "type": "mrkdwn",
+                                    "text": `*PROJECT_ID:*\n${project_id}`
                                 },
                                 {
-                                "type": "mrkdwn",
-                                "text": `*ENVIRONMENT:*\n${environment}`
+                                    "type": "mrkdwn",
+                                    "text": `*ENVIRONMENT:*\n${environment}`
                                 }
                             ]
                         },
