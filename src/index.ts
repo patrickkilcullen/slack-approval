@@ -44,6 +44,13 @@ async function run(): Promise<void> {
             },
             {
               "type": "section",
+              "text": {
+                  "type": "mrkdwn",
+                  "text": `Plan:`,
+                }
+            },
+            {
+              "type": "section",
               "fields": [
                 {
                   "type": "mrkdwn",
