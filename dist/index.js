@@ -73,7 +73,7 @@ function run() {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": `GitHub Actions Approval Request`,
+                                "text": `*GitHub Actions Approval Request*`,
                             }
                         },
                         {
@@ -88,7 +88,7 @@ function run() {
                             "fields": [
                                 {
                                     "type": "mrkdwn",
-                                    "text": `*WORKFLOW:*\n${workflow}`
+                                    "text": `*Worflow:*\n${workflow}`
                                 },
                                 {
                                     "type": "mrkdwn",
@@ -151,7 +151,7 @@ function run() {
                         'type': 'section',
                         'text': {
                             'type': 'mrkdwn',
-                            'text': `Approved by <@${body.user.id}>`,
+                            'text': `Approved by <@${body.user.id}>\n`,
                         },
                     });
                     yield client.chat.update({
@@ -175,7 +175,7 @@ function run() {
                         'type': 'section',
                         'text': {
                             'type': 'mrkdwn',
-                            'text': `Rejected by <@${body.user.id}>`,
+                            'text': `Rejected by <@${body.user.id}>\n`,
                         },
                     });
                     yield client.chat.update({

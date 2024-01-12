@@ -42,7 +42,7 @@ async function run(): Promise<void> {
               "type": "section",
               "text": {
                   "type": "mrkdwn",
-                  "text": `GitHub Actions Approval Request`,
+                  "text": `*GitHub Actions Approval Request*`,
                 }
             },
             {
@@ -57,7 +57,7 @@ async function run(): Promise<void> {
               "fields": [
                 {
                   "type": "mrkdwn",
-                  "text": `*WORKFLOW:*\n${workflow}`
+                  "text": `*Worflow:*\n${workflow}`
                 },
                 {
                   "type": "mrkdwn",
@@ -121,7 +121,7 @@ async function run(): Promise<void> {
           'type': 'section',
           'text': {
             'type': 'mrkdwn',
-            'text': `Approved by <@${body.user.id}>`,
+            'text': `Approved by <@${body.user.id}>\n`,
           },
         })
 
@@ -146,7 +146,7 @@ async function run(): Promise<void> {
           'type': 'section',
           'text': {
             'type': 'mrkdwn',
-            'text': `Rejected by <@${body.user.id}>`,
+            'text': `Rejected by <@${body.user.id}>\n`,
           },
         })
 
