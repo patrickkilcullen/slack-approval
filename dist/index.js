@@ -41,6 +41,7 @@ const slackAppToken = process.env.SLACK_APP_TOKEN || "";
 const channel_id = process.env.SLACK_CHANNEL_ID || "";
 const plan = process.env.PLAN || "";
 const layer = process.env.LAYER || "";
+const action = process.env.ACTION || "";
 const app = new bolt_1.App({
     token: token,
     signingSecret: signingSecret,
@@ -87,6 +88,10 @@ function run() {
                             "fields": [
                                 {
                                     "type": "mrkdwn",
+                                    "text": `*WORKFLOW:*\n${workflow}`
+                                },
+                                {
+                                    "type": "mrkdwn",
                                     "text": `*GitHub Actor:*\n${actor}`
                                 },
                                 {
@@ -96,20 +101,15 @@ function run() {
                                 {
                                     "type": "mrkdwn",
                                     "text": `*Actions URL:*\n${actionsUrl}`
-                                },
-                                {
-                                    "type": "mrkdwn",
-                                    "text": `*LAYER:*\n${layer}`
-                                },
-                                {
-                                    "type": "mrkdwn",
-                                    "text": `*WORKFLOW:*\n${workflow}`
-                                },
-                                {
-                                    "type": "mrkdwn",
-                                    "text": `*ENVIRONMENT:*\n${environment}`
                                 }
                             ]
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": `*Trigger '${action}' on'${layer}' layer in '${environment}'* :exclamation:`
+                            }
                         },
                         {
                             "type": "actions",
