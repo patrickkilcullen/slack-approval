@@ -1,4 +1,4 @@
-name: slack-approval-kubmeta
+name: slack-approval-with-plan
 description: Custom action to send approval request to Slack from GitHub Actions
 author: varu3
 runs:
