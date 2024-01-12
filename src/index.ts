@@ -50,7 +50,7 @@ async function run(): Promise<void> {
               "type": "section",
               "text": {
                   "type": "mrkdwn",
-                  "text": `*Plan:*\n \`\`\` \n${plan}\n\`\`\``,
+                  "text": `*Plan:*\n \`\`\` ${plan}\n\`\`\``,
                 }
             },
             {
