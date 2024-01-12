@@ -81,7 +81,7 @@ function run() {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": `*Plan:*\n \`\`\` ${plan}\n\`\`\``,
+                                "text": `*Plan:*\n \`\`\`${plan}\n\`\`\``,
                             }
                         },
                         {
