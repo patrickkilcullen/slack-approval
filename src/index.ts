@@ -34,6 +34,7 @@ async function run(): Promise<void> {
     const service_name = process.env.SERVICE_NAME || "";
     const environment = process.env.ENVIRONMENT || "";
     const project_id = process.env.PROJECT_ID || "";
+    const github_branch = process.env.GITHUB_REF_NAME || "";
     (async () => {
       await web.chat.postMessage({ 
         channel: channel_id, 
@@ -73,6 +74,14 @@ async function run(): Promise<void> {
                   "text": `*Actions URL:*\n${actionsUrl}`
                 }
               ]
+            },
+            {
+              "type": "section",
+              "text":
+                {
+                  "type": "mrkdwn",
+                  "text": `*Branch:*\n${github_branch}`
+                }
             },
             {
               "type": "section",

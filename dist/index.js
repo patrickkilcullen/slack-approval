@@ -65,6 +65,7 @@ function run() {
             const service_name = process.env.SERVICE_NAME || "";
             const environment = process.env.ENVIRONMENT || "";
             const project_id = process.env.PROJECT_ID || "";
+            const github_branch = process.env.GITHUB_REF_NAME || "";
             (() => __awaiter(this, void 0, void 0, function* () {
                 yield web.chat.postMessage({
                     channel: channel_id,
@@ -104,6 +105,13 @@ function run() {
                                     "text": `*Actions URL:*\n${actionsUrl}`
                                 }
                             ]
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": `*Branch:*\n${github_branch}`
+                            }
                         },
                         {
                             "type": "section",
