@@ -94,7 +94,7 @@ function run() {
                                 "elements": [
                                     {
                                         "type": "text",
-                                        "text": `Plan is to big. Look at the plan on the build job`
+                                        "text": `Plan is too big. Look at the plan on the build job`
                                     }
                                 ]
                             }
