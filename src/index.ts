@@ -44,7 +44,9 @@ async function run(): Promise<void> {
         }
       }
     ];
-    if(plan != null){
+    var regex = /[^\r\n]+/g;
+    var plan_array_filter = plan.match(regex);
+    if (plan_array_filter != null) {
       block_template.push({
         "type": "section",
         "text": {
@@ -52,8 +54,32 @@ async function run(): Promise<void> {
           "text": `*Plan:*`,
         }
       })
-      block_template.push(
-        {
+      var plan_array;
+      plan_array = [];
+      var temp = "";
+      var item = "";
+      while (plan_array_filter.length != 0) {
+        var shift = plan_array_filter.shift();
+        if (shift !== undefined) {
+          item = shift;
+          item = item.concat(`\n`);
+        }
+        if ((temp.length + item.length) > 10000) {
+          if (temp.length > 0) {
+            plan_array.push(temp);
+          }
+          temp = item;
+          console.log(plan_array);
+        }
+        else {
+          temp = temp.concat(item);
+        }
+        if (plan_array_filter.length == 0) {
+          plan_array.push(temp);
+        }
+      }
+      plan_array.forEach((element) => {
+        block_template.push(block_template.push({
           "type": "rich_text",
           "elements": [
             {
@@ -62,12 +88,13 @@ async function run(): Promise<void> {
               "elements": [
                 {
                   "type": "text",
-                  "text": `${plan}`
+                  "text": `${element}`
                 }
               ]
             }
           ]
-        });
+        }))
+      });
     }
     block_template.push(
       {
