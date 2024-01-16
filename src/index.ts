@@ -54,31 +54,7 @@ async function run(): Promise<void> {
           "text": `*Plan:*`,
         }
       })
-      var plan_array;
-      plan_array = [];
-      var temp = "";
-      var item = "";
-      while (plan_array_filter.length != 0) {
-        var shift = plan_array_filter.shift();
-        if (shift !== undefined) {
-          item = shift;
-          item = item.concat(`\n`);
-        }
-        if ((temp.length + item.length) > 2990) {
-          if (temp.length > 0) {
-            plan_array.push(temp);
-          }
-          temp = item;
-          console.log(plan_array);
-        }
-        else {
-          temp = temp.concat(item);
-        }
-        if (plan_array_filter.length == 0) {
-          plan_array.push(temp);
-        }
-      }
-      plan_array.forEach((element) => {
+      if(plan.length > 39000) {
         block_template.push(
           {
             "type": "rich_text",
@@ -88,13 +64,56 @@ async function run(): Promise<void> {
                 "elements": [
                   {
                     "type": "text",
-                    "text": `${element}`
+                    "text": `Plan is to big. Look at the plan on the build job`
                   }
                 ]
               }
             ]
-          })
-        });
+          });
+      }
+      else {
+        var plan_array;
+        plan_array = [];
+        var temp = "";
+        var item = "";
+        while (plan_array_filter.length != 0) {
+          var shift = plan_array_filter.shift();
+          if (shift !== undefined) {
+            item = shift;
+            item = item.concat(`\n`);
+          }
+          if ((temp.length + item.length) > 2990) {
+            if (temp.length > 0) {
+              plan_array.push(temp);
+            }
+            temp = item;
+            console.log(plan_array);
+          }
+          else {
+            temp = temp.concat(item);
+          }
+          if (plan_array_filter.length == 0) {
+            plan_array.push(temp);
+          }
+        }
+        plan_array.forEach((element) => {
+          block_template.push(
+            {
+              "type": "rich_text",
+              "elements": [
+                {
+                  "type": "rich_text_preformatted",
+                  "elements": [
+                    {
+                      "type": "text",
+                      "text": `${element}`
+                    }
+                  ]
+                }
+              ]
+            })
+          });
+      }
     }
     block_template.push(
       {
