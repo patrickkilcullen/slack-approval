@@ -85,7 +85,6 @@ async function run(): Promise<void> {
             "elements": [
               {
                 "type": "rich_text_preformatted",
-                "border": 0,
                 "elements": [
                   {
                     "type": "text",
