@@ -35,90 +35,132 @@ async function run(): Promise<void> {
     const environment = process.env.ENVIRONMENT || "";
     const project_id = process.env.PROJECT_ID || "";
     const github_branch = process.env.GITHUB_REF_NAME || "";
+    const block_template:any = [
+      {
+      "type": "section",
+      "text": {
+          "type": "mrkdwn",
+          "text": `*GitHub Actions Approval Request*`,
+        }
+      }
+    ];
+    var regex = /[^\r\n]+/g;
+    var plan_array_filter = plan.match(regex);
+    if(plan_array_filter != null){
+      block_template.push({
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": `*Plan:*`,
+        }
+      })
+      var plan_array: string[];
+      plan_array = [];
+      var temp = "";
+      var item = "";
+
+      while (plan_array_filter.length != 0) {
+        var shift = plan_array_filter.shift()
+        if (shift !== undefined) {
+          item = shift;
+          item = item.concat(`\n`);
+        }
+        if ((temp.length + item.length) > 30) {
+          if (temp.length > 0){ 
+            plan_array.push(temp);
+          }
+          temp = item;
+          console.log(plan_array);
+        } else {
+          temp = temp.concat(item);
+        }
+        if (plan_array_filter.length == 0) {
+          plan_array.push(temp);
+        }
+      }
+      plan_array.forEach( (element) => {
+        block_template.push(
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": `\`\`\`${element}\`\`\``,
+            }
+          })
+        }
+      );
+    }
+    block_template.push(
+      {
+        "type": "section",
+        "fields": [
+          {
+            "type": "mrkdwn",
+            "text": `*Worflow:*\n${workflow}`
+          },
+          {
+            "type": "mrkdwn",
+            "text": `*GitHub Actor:*\n${actor}`
+          },
+          {
+            "type": "mrkdwn",
+            "text": `*Repos:*\n${github_server_url}/${github_repos}`
+          },
+          {
+            "type": "mrkdwn",
+            "text": `*Actions URL:*\n${actionsUrl}`
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "text":
+          {
+            "type": "mrkdwn",
+            "text": `*Branch:*\n${github_branch}`
+          }
+      },
+      {
+        "type": "section",
+        "text":
+          {
+            "type": "mrkdwn",
+            "text": `:exclamation: *Trigger '${action}' on '${layer}' layer in '${workspace}'* :exclamation:`
+          }
+      },
+      {
+          "type": "actions",
+          "elements": [
+              {
+                  "type": "button",
+                  "text": {
+                      "type": "plain_text",
+                      "emoji": true,
+                      "text": "Approve"
+                  },
+                  "style": "primary",
+                  "value": "approve",
+                  "action_id": `slack-approval-approve-${run_id}`
+              },
+              {
+                  "type": "button",
+                  "text": {
+                          "type": "plain_text",
+                          "emoji": true,
+                          "text": "Reject"
+                  },
+                  "style": "danger",
+                  "value": "reject",
+                  "action_id": `slack-approval-reject-${run_id}`
+              }
+          ]
+      }
+      );
     (async () => {
       await web.chat.postMessage({ 
         channel: channel_id, 
         text: "GitHub Actions Approval request",
-        blocks: [
-            {
-              "type": "section",
-              "text": {
-                  "type": "mrkdwn",
-                  "text": `*GitHub Actions Approval Request*`,
-                }
-            },
-            {
-              "type": "section",
-              "text": {
-                  "type": "mrkdwn",
-                  "text": `*Plan:*\n \`\`\`${plan}\n\`\`\``,
-                }
-            },
-            {
-              "type": "section",
-              "fields": [
-                {
-                  "type": "mrkdwn",
-                  "text": `*Worflow:*\n${workflow}`
-                },
-                {
-                  "type": "mrkdwn",
-                  "text": `*GitHub Actor:*\n${actor}`
-                },
-                {
-                  "type": "mrkdwn",
-                  "text": `*Repos:*\n${github_server_url}/${github_repos}`
-                },
-                {
-                  "type": "mrkdwn",
-                  "text": `*Actions URL:*\n${actionsUrl}`
-                }
-              ]
-            },
-            {
-              "type": "section",
-              "text":
-                {
-                  "type": "mrkdwn",
-                  "text": `*Branch:*\n${github_branch}`
-                }
-            },
-            {
-              "type": "section",
-              "text":
-                {
-                  "type": "mrkdwn",
-                  "text": `:exclamation: *Trigger '${action}' on '${layer}' layer in '${workspace}'* :exclamation:`
-                }
-            },
-            {
-                "type": "actions",
-                "elements": [
-                    {
-                        "type": "button",
-                        "text": {
-                            "type": "plain_text",
-                            "emoji": true,
-                            "text": "Approve"
-                        },
-                        "style": "primary",
-                        "value": "approve",
-                        "action_id": `slack-approval-approve-${run_id}`
-                    },
-                    {
-                        "type": "button",
-                        "text": {
-                                "type": "plain_text",
-                                "emoji": true,
-                                "text": "Reject"
-                        },
-                        "style": "danger",
-                        "value": "reject",
-                        "action_id": `slack-approval-reject-${run_id}`
-                    }
-                ]
-            }
-        ]
+        blocks: block_template
       });
     })();
 
