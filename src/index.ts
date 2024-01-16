@@ -65,7 +65,7 @@ async function run(): Promise<void> {
           item = shift;
           item = item.concat(`\n`);
         }
-        if ((temp.length + item.length) > 30) {
+        if ((temp.length + item.length) > 2990) {
           if (temp.length > 0){ 
             plan_array.push(temp);
           }
