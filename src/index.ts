@@ -81,19 +81,11 @@ async function run(): Promise<void> {
       plan_array.forEach((element) => {
         block_template.push(
           {
-            "type": "rich_text",
-            "elements": [
-              {
-                "type": "rich_text_preformatted",
-                "border": 0,
-                "elements": [
-                  {
-                    "type": "text",
-                    "text": `${element}`
-                  }
-                ]
-              }
-            ]
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": `\`\`\`${element}\`\`\``,
+            }
           })
         });
     }
