@@ -110,7 +110,7 @@ function run() {
                     }
                 }
                 plan_array.forEach((element) => {
-                    block_template.push(block_template.push({
+                    block_template.push({
                         "type": "rich_text",
                         "elements": [
                             {
@@ -124,7 +124,7 @@ function run() {
                                 ]
                             }
                         ]
-                    }));
+                    });
                 });
             }
             block_template.push({
