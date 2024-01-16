@@ -111,11 +111,19 @@ function run() {
                 }
                 plan_array.forEach((element) => {
                     block_template.push({
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": `\`\`\`${element}\`\`\``,
-                        }
+                        "type": "rich_text",
+                        "elements": [
+                            {
+                                "type": "rich_text_preformatted",
+                                "border": 0,
+                                "elements": [
+                                    {
+                                        "type": "text",
+                                        "text": `${element}`
+                                    }
+                                ]
+                            }
+                        ]
                     });
                 });
             }
