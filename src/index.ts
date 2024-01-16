@@ -168,8 +168,8 @@ async function run(): Promise<void> {
       await ack();
       try {
         const response_blocks = (<BlockAction>body).message?.blocks
-        response_blocks.pop()
-        response_blocks.push({
+        block_template.pop()
+        block_template.push({
           'type': 'section',
           'text': {
             'type': 'mrkdwn',
@@ -180,7 +180,7 @@ async function run(): Promise<void> {
         await client.chat.update({
           channel: body.channel?.id || "",
           ts: (<BlockAction>body).message?.ts || "",
-          blocks: response_blocks
+          blocks: block_template
         })
       } catch (error) {
         logger.error(error)
@@ -193,8 +193,8 @@ async function run(): Promise<void> {
       await ack();
       try {
         const response_blocks = (<BlockAction>body).message?.blocks
-        response_blocks.pop()
-        response_blocks.push({
+        block_template.pop()
+        block_template.push({
           'type': 'section',
           'text': {
             'type': 'mrkdwn',
@@ -205,7 +205,7 @@ async function run(): Promise<void> {
         await client.chat.update({
           channel: body.channel?.id || "",
           ts: (<BlockAction>body).message?.ts || "",
-          blocks: response_blocks
+          blocks: block_template
         })
       } catch (error) {
         logger.error(error)

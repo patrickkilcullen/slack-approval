@@ -190,8 +190,8 @@ function run() {
                 yield ack();
                 try {
                     const response_blocks = (_a = body.message) === null || _a === void 0 ? void 0 : _a.blocks;
-                    response_blocks.pop();
-                    response_blocks.push({
+                    block_template.pop();
+                    block_template.push({
                         'type': 'section',
                         'text': {
                             'type': 'mrkdwn',
@@ -201,7 +201,7 @@ function run() {
                     yield client.chat.update({
                         channel: ((_b = body.channel) === null || _b === void 0 ? void 0 : _b.id) || "",
                         ts: ((_c = body.message) === null || _c === void 0 ? void 0 : _c.ts) || "",
-                        blocks: response_blocks
+                        blocks: block_template
                     });
                 }
                 catch (error) {
@@ -214,8 +214,8 @@ function run() {
                 yield ack();
                 try {
                     const response_blocks = (_d = body.message) === null || _d === void 0 ? void 0 : _d.blocks;
-                    response_blocks.pop();
-                    response_blocks.push({
+                    block_template.pop();
+                    block_template.push({
                         'type': 'section',
                         'text': {
                             'type': 'mrkdwn',
@@ -225,7 +225,7 @@ function run() {
                     yield client.chat.update({
                         channel: ((_e = body.channel) === null || _e === void 0 ? void 0 : _e.id) || "",
                         ts: ((_f = body.message) === null || _f === void 0 ? void 0 : _f.ts) || "",
-                        blocks: response_blocks
+                        blocks: block_template
                     });
                 }
                 catch (error) {
